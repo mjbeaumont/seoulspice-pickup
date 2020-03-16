@@ -8,8 +8,8 @@ const getters = {
   itemSubtotal(state) {
     let st = 0;
     state.items.forEach(item => {
+      st += item.price;
       if (item.type === "entree") {
-        st += item.base.price;
         item.options.forEach(option => {
           option.choices.forEach(choice => {
             st += choice.price;

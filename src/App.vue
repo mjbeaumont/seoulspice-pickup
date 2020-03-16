@@ -11,7 +11,7 @@
 
 <script>
 import OrderTotals from "./components/OrderTotals";
-import EntreeBuilder from "./views/EntreeBuilder";
+import EntreeBuilder from "./components/EntreeBuilder";
 export default {
   components: {
     EntreeBuilder,

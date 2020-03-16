@@ -72,7 +72,8 @@ export default {
       const optionsToAdd = JSON.parse(JSON.stringify(options));
 
       const entreeToAdd = {
-        base: this.entree.base,
+        name: this.entree.base.name,
+        price: this.entree.base.price,
         type: this.entree.type,
         options: optionsToAdd
       };
