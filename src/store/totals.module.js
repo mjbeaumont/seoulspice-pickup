@@ -4,12 +4,8 @@ const state = {
   taxExempt: false
 };
 const getters = {
-  /*subtotal(state, getters, rootState, rootGetters) {
-    let st = 0;
-    return st;
-  },*/
-  subtotal(state) {
-    return state.taxExempt;
+  subtotal(state, getters, rootState, rootGetters) {
+    return rootGetters.itemSubtotal;
   },
   tax(state, getters) {
     return getters.subtotal * getters.taxRate;
