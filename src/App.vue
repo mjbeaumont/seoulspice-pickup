@@ -3,7 +3,7 @@
     <section class="section">
       <div class="container">
         <order-totals></order-totals>
-        <router-view />
+        <EntreeBuilder></EntreeBuilder>
       </div>
     </section>
   </div>
@@ -11,8 +11,10 @@
 
 <script>
 import OrderTotals from "./components/OrderTotals";
+import EntreeBuilder from "./views/EntreeBuilder";
 export default {
   components: {
+    EntreeBuilder,
     OrderTotals
   }
 };
