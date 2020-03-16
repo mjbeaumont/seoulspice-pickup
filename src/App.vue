@@ -1,32 +1,83 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <section class="section">
+      <div class="container">
+        <order-totals></order-totals>
+        <router-view />
+      </div>
+    </section>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import OrderTotals from "./components/OrderTotals";
+export default {
+  components: {
+    OrderTotals
   }
+};
+</script>
+
+<style lang="scss">
+$body-size: 18px;
+
+@import "~bulma/sass/utilities/_all";
+
+$primary: #dd3333;
+$primary-invert: findColorInvert($primary);
+$warning: #f9d400;
+$warning-invert: findColorInvert($warning);
+$black: #0a0000;
+$black-invert: findColorInvert($black);
+
+$colors: (
+  "primary": (
+    $primary,
+    $primary-invert
+  ),
+  "warning": (
+    $warning,
+    $warning-invert
+  ),
+  "info": (
+    $info,
+    $info-invert
+  ),
+  "success": (
+    $success,
+    $success-invert
+  ),
+  "danger": (
+    $danger,
+    $danger-invert
+  ),
+  "black": (
+    $black,
+    $black-invert
+  ),
+  "light": (
+    $light,
+    $light-invert
+  ),
+  "dark": (
+    $dark,
+    $dark-invert
+  )
+);
+
+$steps-active-color: $warning;
+$steps-previous-color: $warning;
+$radio-active-background-color: $warning;
+
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

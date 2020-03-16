@@ -8,11 +8,15 @@ const getters = {
     let st = 0;
     return st;
   },*/
+  subtotal(state) {
+    return state.taxExempt;
+  },
   tax(state, getters) {
     return getters.subtotal * getters.taxRate;
   },
-  taxRate(state, getters, rootState) {
-    return rootState.order.location.taxRate;
+  taxRate() {
+    //return rootState.order.location.taxRate;
+    return 0.06;
   },
   taxRateHuman(state, getters) {
     return getters.taxRate * 100;
