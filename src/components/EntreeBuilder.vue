@@ -8,7 +8,7 @@
         </h2>
       </div>
     </section>
-    <section class="choose-options">
+    <section class="choose-options section">
       <div class="container">
         <b-field label="Choose your base">
           <b-select
@@ -79,7 +79,16 @@ export default {
       };
 
       this.$store.commit(ADD_ITEM, entreeToAdd);
-      this.clearEntree();
+      this.confirmContinue();
+    },
+    confirmContinue() {
+      this.$buefy.dialog.confirm({
+        message: "Would you like to add another entree?",
+        onConfirm: () => this.clearEntree(),
+        onCancel: () => alert("moving to drinks"),
+        confirmText: "Yes",
+        cancelText: "No"
+      });
     },
     clearEntree() {
       this.entree.base = null;
@@ -92,3 +101,9 @@ export default {
   }
 };
 </script>
+
+<style type="text/scss" scoped>
+  .choose-options{
+    padding-top: 0;
+  }
+</style>
