@@ -12,6 +12,14 @@
             v-if="active === 'addon'"
             @update="setActive"
           ></OrderAddon>
+          <OrderConfirmation
+            v-if="active === 'confirmation'"
+            @update="setActive"
+          ></OrderConfirmation>
+          <OrderInformation
+            v-if="active === 'order-info'"
+            @update="setActive"
+          ></OrderInformation>
         </transition>
       </div>
     </section>
@@ -22,11 +30,15 @@
 import OrderTotals from "./components/OrderTotals";
 import EntreeBuilder from "./components/EntreeBuilder";
 import OrderAddon from "./components/OrderAddon";
+import OrderConfirmation from "./components/OrderConfirmation";
+import OrderInformation from "./components/OrderInformation";
 export default {
   components: {
     OrderAddon,
     EntreeBuilder,
-    OrderTotals
+    OrderTotals,
+    OrderConfirmation,
+    OrderInformation
   },
   data() {
     return {
@@ -105,7 +117,8 @@ $radio-active-background-color: $warning;
   opacity: 0;
 }
 
-.fade-leave,.fade-leave-active {
+.fade-leave,
+.fade-leave-active {
   position: absolute;
 }
 

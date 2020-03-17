@@ -10,6 +10,7 @@ const entreeOptions = {
       type: "proteins",
       label: "Pick your protein",
       max: 2,
+      cartLabel: "Proteins",
       choices: [
         { name: "Beef (+1.99)", price: 1.99, selected: false },
         { name: "Chicken", price: 0, selected: false },
@@ -20,6 +21,7 @@ const entreeOptions = {
     {
       type: "extraProteins",
       label: "Would you like to add double protein? (+2.99)",
+      cartLabel: "Double Proteins",
       max: 1,
       choices: [
         { name: "Beef", price: 2.99, selected: false },
@@ -31,6 +33,7 @@ const entreeOptions = {
     {
       type: "veggies",
       label: "Pick your veggies",
+      cartLabel: "Veggies",
       max: 7,
       choices: [
         { name: "Corn", price: 0, selected: false },
@@ -45,6 +48,7 @@ const entreeOptions = {
     {
       type: "sauces",
       label: "Pick your sauces",
+      cartLabel: "Sauces",
       max: 2,
       choices: [
         { name: "Korean Hot Sauce", price: 0, selected: false },
@@ -56,6 +60,7 @@ const entreeOptions = {
     {
       type: "toppings",
       label: "Pick your toppings",
+      cartLabel: "Toppings",
       max: 6,
       choices: [
         { name: "Crispy Garlic", price: 0, selected: false },
@@ -69,6 +74,7 @@ const entreeOptions = {
     {
       type: "extras",
       label: "Extras?",
+      cartLabel: "Extras",
       max: 6,
       choices: [
         { name: "The Egg (+1.99)", price: 1.99, selected: false },

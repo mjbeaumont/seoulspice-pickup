@@ -73,6 +73,7 @@ export default {
           if (choices.length) {
             return {
               type: option.type,
+              cartLabel: option.cartLabel,
               choices: choices
             };
           }
