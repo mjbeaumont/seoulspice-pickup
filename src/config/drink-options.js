@@ -1,4 +1,4 @@
-const addonOptions = {
+const drinkOptions = {
   type: "drinks",
   choices: [
     { name: "Givn Water", price: 1.99, qty: 0 },
@@ -13,4 +13,4 @@ const addonOptions = {
   ]
 };
 
-export default addonOptions;
+export default drinkOptions;
