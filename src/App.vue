@@ -49,7 +49,7 @@ export default {
   },
   data() {
     return {
-      active: "payment",
+      active: "entree",
       edit: false
     };
   },

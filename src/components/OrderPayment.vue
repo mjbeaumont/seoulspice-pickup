@@ -1,11 +1,15 @@
 <template>
   <section class="section">
     <div class="container">
-      <b-message type="is-danger" title="Payment Error" v-if="errors.length">
+      <b-message type="is-danger" title="Payment Error" v-if="paymentErrors.length">
         <p>Please correct the following errors:</p>
-        <ul>
-          <li v-for="(error, index) in errors" :key="index">{{ error.message }}</li>
-        </ul>
+        <div class="content">
+          <ul>
+            <li v-for="(error, index) in paymentErrors" :key="index">
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
       </b-message>
       <div id="form-container">
         <div id="sq-card-number"></div>
@@ -29,15 +33,23 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { orderService } from "../config/api.service";
+import { createHelpers } from "vuex-map-fields";
+
+const { mapFields } = createHelpers({
+  getterType: "getOrderField",
+  mutationType: "updateOrderField"
+});
 export default {
   computed: {
-    ...mapGetters(["total"])
+    ...mapGetters(["total", "itemSubtotal", "tax", "items"]),
+    ...mapFields(["name", "location", "time"])
   },
   data() {
     return {
       paymentForm: null,
-      errors: [],
-      nonce: null
+      paymentErrors: [],
+      submitDisabled: false
     };
   },
   mounted() {
@@ -46,7 +58,7 @@ export default {
     that.paymentForm = new SqPaymentForm({
       // Initialize the payment form elements
       //TODO: Replace with your sandbox application ID
-      applicationId: "sandbox-sq0idb-NpT7hhU92fIF2OeEgtozxA",
+      applicationId: process.env.VUE_APP_SQUAREUP_APPLICATION_ID,
       inputClass: "sq-input",
       autoBuild: false,
       // Customize the CSS for SqPaymentForm iframe elements
@@ -82,50 +94,47 @@ export default {
          * callback function: cardNonceResponseReceived
          * Triggered when: SqPaymentForm completes a card nonce request
          */
-        cardNonceResponseReceived: function(errors, nonce) {
+        cardNonceResponseReceived: async function(errors, nonce) {
           if (errors) {
             // Log errors from nonce generation to the browser developer console.
             errors.forEach(function(error) {
-              that.errors.push(error);
+              that.paymentErrors.push(error);
             });
             return;
           }
-          that.nonce = nonce;
-          //TODO: Replace alert with code in step 2.1
-          // alert(`The generated nonce is:\n${nonce}`);
-          fetch("process-payment", {
-            method: "POST",
-            headers: {
-              Accept: "application/json",
-              "Content-Type": "application/json"
+          that.submitDisabled = true;
+          const loadingComponent = that.$buefy.loading.open({
+            container: null
+          });
+          let response = await orderService.post("/process-order.php", {
+            nonce: nonce,
+            totals: {
+              subtotal: that.itemSubtotal,
+              tax: that.tax,
+              taxRate: that.taxRate,
+              total: that.total
             },
-            body: JSON.stringify({
-              nonce: nonce
-            })
-          })
-            .catch(err => {
-              alert("Network error: " + err);
-            })
-            .then(response => {
-              if (!response.ok) {
-                return response
-                  .text()
-                  .then(errorInfo => Promise.reject(errorInfo));
-              }
-              return response.text();
-            })
-            .then(data => {
-              console.log(JSON.stringify(data));
-              alert(
-                "Payment complete successfully!\nCheck browser developer console for more details"
-              );
-            })
-            .catch(err => {
-              console.error(err);
-              alert(
-                "Payment failed to complete!\nCheck browser developer console for more details"
-              );
-            });
+            items: that.items,
+            order: {
+              name: that.name,
+              location: that.location,
+              time: that.time
+            }
+          });
+          loadingComponent.close();
+
+          if (response.status === 200) {
+            if (response.data.success) {
+              that.$emit("update", "summary");
+            } else {
+              that.submitDisabled = false;
+              that.$buefy.toast.open({
+                message: response.data.message,
+                type: "is-danger",
+                duration: 5000
+              });
+            }
+          }
         }
       }
     });
@@ -133,8 +142,10 @@ export default {
   },
   methods: {
     processPayment() {
-      this.errors = [];
-      this.paymentForm.requestCardNonce();
+      this.paymentErrors = [];
+      if (!this.submitDisabled) {
+        this.paymentForm.requestCardNonce();
+      }
     }
   },
   name: "OrderPayment"
