@@ -60,14 +60,11 @@ export default {
         });
       }
 
-      if (this.active === "drinks") {
+      if (this.active === "drinks" && !this.activeAddon) {
         this.active = "desserts";
       } else {
         this.$emit("update", "confirmation");
       }
-    },
-    validateBeforeSubmit() {
-      return true;
     }
   },
   name: "OrderAddon"

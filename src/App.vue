@@ -15,6 +15,7 @@
           <OrderConfirmation
             v-if="active === 'confirmation'"
             @update="setActive"
+            @edit="setEdit"
           ></OrderConfirmation>
           <OrderInformation
             v-if="active === 'order-info'"
@@ -42,12 +43,22 @@ export default {
   },
   data() {
     return {
-      active: "entree"
+      active: "entree",
+      edit: false
     };
   },
   methods: {
     setActive(section) {
-      this.active = section;
+      if (this.edit) {
+        this.active = "confirmation";
+      } else {
+        this.active = section;
+      }
+      this.edit = false;
+    },
+    setEdit(section) {
+      this.setActive(section);
+      this.edit = true;
     }
   },
   name: "App"

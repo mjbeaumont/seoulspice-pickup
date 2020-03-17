@@ -98,7 +98,10 @@ export default {
       this.$buefy.dialog.confirm({
         message: "Would you like to add another entree?",
         onConfirm: () => this.clearEntree(),
-        onCancel: () => this.$emit("update", "addon"),
+        onCancel: () => {
+          this.$emit("update", "addon");
+          this.clearEntree();
+        },
         confirmText: "Yes",
         cancelText: "No"
       });

@@ -10,10 +10,8 @@
       <div class="has-text-centered buttons">
         <a class="button is-danger" @click.prevent="editOrder('entree')"
           ><span>Add Entree</span></a
-        ><a class="button is-danger" @click.prevent="editOrder('drink')"
-          ><span>Add Drink</span></a
-        ><a class="button is-danger" @click.prevent="editOrder('dessert')"
-          ><span>Add Dessert</span></a
+        ><a class="button is-danger" @click.prevent="editOrder('addon')"
+          ><span>Add Drink/Dessert</span></a
         ><a class="button is-success" @click.prevent="confirmItems()"
           ><span>Continue</span
           ><span class="icon"> <i class="fas fa-arrow-right"></i> </span
