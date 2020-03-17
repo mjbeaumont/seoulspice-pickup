@@ -21,6 +21,10 @@
             v-if="active === 'order-info'"
             @update="setActive"
           ></OrderInformation>
+          <OrderPayment
+            v-if="active === 'payment'"
+            @update="setActive"
+          ></OrderPayment>
         </transition>
       </div>
     </section>
@@ -33,17 +37,19 @@ import EntreeBuilder from "./components/EntreeBuilder";
 import OrderAddon from "./components/OrderAddon";
 import OrderConfirmation from "./components/OrderConfirmation";
 import OrderInformation from "./components/OrderInformation";
+import OrderPayment from "./components/OrderPayment";
 export default {
   components: {
     OrderAddon,
     EntreeBuilder,
     OrderTotals,
     OrderConfirmation,
-    OrderInformation
+    OrderInformation,
+    OrderPayment
   },
   data() {
     return {
-      active: "entree",
+      active: "payment",
       edit: false
     };
   },
