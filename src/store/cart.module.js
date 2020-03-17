@@ -6,18 +6,7 @@ const state = {
 
 const getters = {
   itemSubtotal(state) {
-    let st = 0;
-    state.items.forEach(item => {
-      st += item.price;
-      if (item.type === "entree") {
-        item.options.forEach(option => {
-          option.choices.forEach(choice => {
-            st += choice.price;
-          });
-        });
-      }
-    });
-    return st;
+    return state.items.reduce((carry, item) => carry + (item.price * item.qty), 0);
   }
 };
 

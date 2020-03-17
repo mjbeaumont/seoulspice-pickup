@@ -25,11 +25,14 @@
             >
           </b-select>
         </b-field>
-        <entree-options-component
-          :options="entreeOptions.options"
-          v-if="entree.base"
-          @valid="addToCart"
-        ></entree-options-component>
+        <transition name="slide">
+          <entree-options-component
+            :options="entreeOptions.options"
+            :price="price"
+            v-if="entree.base"
+            @valid="addToCart"
+          ></entree-options-component>
+        </transition>
       </div>
     </section>
   </div>
@@ -45,13 +48,29 @@ export default {
     EntreeOptionsComponent
   },
   name: "EntreeBuilder",
+  computed: {
+    price() {
+      let price = 0;
+      if (this.entree.base) {
+        price += this.entree.base.price;
+      }
+      this.entreeOptions.options.forEach(option => {
+        option.choices.forEach(choice => {
+          if (choice.selected) {
+            price += choice.price;
+          }
+        });
+      });
+      return price;
+    }
+  },
   data() {
     return {
       entree: {
         base: null,
         type: "entree"
       },
-      entreeOptions: entreeOptions
+      entreeOptions: entreeOptions,
     };
   },
   methods: {
@@ -73,7 +92,8 @@ export default {
 
       const entreeToAdd = {
         name: this.entree.base.name,
-        price: this.entree.base.price,
+        price: this.price,
+        qty: 1,
         type: this.entree.type,
         options: optionsToAdd
       };
@@ -85,7 +105,7 @@ export default {
       this.$buefy.dialog.confirm({
         message: "Would you like to add another entree?",
         onConfirm: () => this.clearEntree(),
-        onCancel: () => alert("moving to drinks"),
+        onCancel: () => this.$emit("update", "addon"),
         confirmText: "Yes",
         cancelText: "No"
       });
@@ -103,7 +123,12 @@ export default {
 </script>
 
 <style type="text/scss" scoped>
-  .choose-options{
-    padding-top: 0;
-  }
+.choose-options {
+  padding-top: 0;
+}
+
+.box {
+  width: 25%;
+  margin-top: 1em;
+}
 </style>

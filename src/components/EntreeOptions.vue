@@ -7,7 +7,7 @@
     ></entree-option-checkbox-group>
     <div class="has-text-centered buttons">
       <a class="button is-info" @click.prevent="setActiveOrderStep()"
-        ><span>Add to Cart</span
+        ><span>Add to Cart ({{ price | currency }})</span
         ><span class="icon"> <i class="fas fa-arrow-right"></i> </span
       ></a>
     </div>
@@ -45,7 +45,7 @@ export default {
     }
   },
   name: "OrderDetailsOptions",
-  props: ["options"]
+  props: ["options", "price"]
 };
 </script>
 
