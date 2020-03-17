@@ -3,21 +3,18 @@
     <section class="section">
       <div class="container">
         <transition class="fade">
-          <b-field label="Choose your base" v-if="!entree.base">
-            <b-select
-              v-model="entree.base"
-              name="base"
-              placeholder="Choose your base"
-              key="base-input"
-            >
-              <option
+          <div v-if="!entree.base">
+            <h3>Choose your base</h3>
+            <div class="buttons">
+              <b-button
+                type="is-warning"
                 v-for="base in entreeOptions.bases"
                 :key="base.name"
-                :value="base"
-                >{{ base.name }} ({{ base.price || currency }})</option
+                @click="setBase(base)"
+                >{{ base.name }} ({{ base.price || currency }})</b-button
               >
-            </b-select>
-          </b-field>
+            </div>
+          </div>
           <entree-options-component
             :options="entreeOptions"
             :price="price"
@@ -113,6 +110,9 @@ export default {
           choice.selected = false;
         });
       });
+    },
+    setBase(base) {
+      this.entree.base = base;
     }
   }
 };
