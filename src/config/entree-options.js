@@ -10,7 +10,7 @@ const entreeOptions = {
     {
       type: "proteins",
       label: "Pick your protein",
-      max: 2,
+      max: 1,
       cartLabel: "Proteins",
       choices: [
         { name: "Beef", price: 1.99, selected: false },
