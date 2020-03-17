@@ -10,9 +10,8 @@ const getters = {
   tax(state, getters) {
     return getters.subtotal * getters.taxRate;
   },
-  taxRate() {
-    //return rootState.order.location.taxRate;
-    return 0.06;
+  taxRate(state, getters, rootState) {
+    return rootState.order.location ? rootState.order.location.taxRate : 0;
   },
   taxRateHuman(state, getters) {
     return getters.taxRate * 100;

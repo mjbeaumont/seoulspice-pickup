@@ -18,7 +18,7 @@
           <span class="has-text-warning has-text-weight-bold">Subtotal: </span>
           {{ subtotal | currency }}
         </p>
-        <p class="navbar-item">
+        <p class="navbar-item" v-if="taxRate > 0">
           <span class="has-text-warning has-text-weight-bold"
             >Tax ({{ taxRateHuman }}%):
           </span>
@@ -41,7 +41,7 @@ export default {
     mobileButtonText() {
       return this.mobileMenuOpen ? "Hide Totals" : "View Totals";
     },
-    ...mapGetters(["subtotal", "tax", "taxRateHuman", "total"])
+    ...mapGetters(["subtotal", "tax", "taxRate", "taxRateHuman", "total"])
   },
   data() {
     return {
