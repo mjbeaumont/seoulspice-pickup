@@ -7,7 +7,7 @@
       :disabled="checkboxIsDisabled(choice)"
       type="is-warning"
     >
-      {{ choice.name }}
+      {{ getChoiceName(choice) }}
     </b-checkbox>
   </b-field>
 </template>
@@ -25,6 +25,13 @@ export default {
   methods: {
     checkboxIsDisabled(item) {
       return this.countSelectedOptions >= this.group.max && !item.selected;
+    },
+    getChoiceName(choice) {
+      let choiceName = choice.name;
+      if (choice.price > 0) {
+        choiceName += " (+" + choice.price + ")";
+      }
+      return choiceName;
     },
     updateOption() {
       return 1;

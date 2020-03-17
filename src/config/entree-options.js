@@ -12,7 +12,7 @@ const entreeOptions = {
       max: 2,
       cartLabel: "Proteins",
       choices: [
-        { name: "Beef (+1.99)", price: 1.99, selected: false },
+        { name: "Beef", price: 1.99, selected: false },
         { name: "Chicken", price: 0, selected: false },
         { name: "Spicy Pork", price: 0, selected: false },
         { name: "Tofu", price: 0, selected: false }
@@ -20,7 +20,7 @@ const entreeOptions = {
     },
     {
       type: "extraProteins",
-      label: "Would you like to add double protein? (+2.99)",
+      label: "Would you like to add double protein?",
       cartLabel: "Double Proteins",
       max: 1,
       choices: [
@@ -77,8 +77,8 @@ const entreeOptions = {
       cartLabel: "Extras",
       max: 6,
       choices: [
-        { name: "The Egg (+1.99)", price: 1.99, selected: false },
-        { name: "Avocado (+1.59)", price: 1.59, selected: false }
+        { name: "The Egg", price: 1.99, selected: false },
+        { name: "Avocado", price: 1.59, selected: false }
       ]
     }
   ],
