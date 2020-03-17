@@ -52,7 +52,7 @@ export default {
           const itemToAdd = {
             name: choice.name,
             qty: choice.qty,
-            type: "drink",
+            type: this.active === "drinks" ? "drink" : "dessert",
             price: choice.price,
             options: null
           };
@@ -60,7 +60,7 @@ export default {
         });
       }
 
-      if (this.active === "drinks" && !this.activeAddon) {
+      if (this.active === "drinks") {
         this.active = "desserts";
       } else {
         this.$emit("update", "confirmation");

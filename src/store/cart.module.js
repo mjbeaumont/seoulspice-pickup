@@ -21,7 +21,14 @@ const getters = {
 
 const mutations = {
   [ADD_ITEM](state, item) {
+    const orderTypeArray = ["entree", "drink", "dessert"];
     state.items.push(item);
+    state.items.sort((a, b) =>
+      orderTypeArray.findIndex(type => type === a.type) >
+      orderTypeArray.findIndex(type => type === b.type)
+        ? 1
+        : -1
+    );
   },
   [UPDATE_QTY](state, payload) {
     state.items[payload.index].qty = payload.qty;
