@@ -1,33 +1,25 @@
 <template>
   <div class="entree-builder">
-    <section class="hero">
-      <div class="hero-body">
-        <h1 class="title">Let's get started</h1>
-        <h2 class="subtitle">
-          Please select from the following options to build your entree.
-        </h2>
-      </div>
-    </section>
-    <section class="choose-options section">
+    <section class="section">
       <div class="container">
-        <b-field label="Choose your base">
-          <b-select
-            v-model="entree.base"
-            name="base"
-            placeholder="Choose your base"
-            key="base-input"
-          >
-            <option
-              v-for="base in entreeOptions.bases"
-              :key="base.name"
-              :value="base"
-              >{{ base.name }} ({{ base.price || currency }})</option
+        <transition class="fade">
+          <b-field label="Choose your base" v-if="!entree.base">
+            <b-select
+              v-model="entree.base"
+              name="base"
+              placeholder="Choose your base"
+              key="base-input"
             >
-          </b-select>
-        </b-field>
-        <transition name="slide">
+              <option
+                v-for="base in entreeOptions.bases"
+                :key="base.name"
+                :value="base"
+                >{{ base.name }} ({{ base.price || currency }})</option
+              >
+            </b-select>
+          </b-field>
           <entree-options-component
-            :options="entreeOptions.options"
+            :options="entreeOptions"
             :price="price"
             v-if="entree.base"
             @valid="addToCart"
@@ -70,7 +62,7 @@ export default {
         base: null,
         type: "entree"
       },
-      entreeOptions: entreeOptions,
+      entreeOptions: entreeOptions
     };
   },
   methods: {
@@ -123,10 +115,6 @@ export default {
 </script>
 
 <style type="text/scss" scoped>
-.choose-options {
-  padding-top: 0;
-}
-
 .box {
   width: 25%;
   margin-top: 1em;

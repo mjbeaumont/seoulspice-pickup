@@ -8,7 +8,10 @@
             v-if="active === 'entree'"
             @update="setActive"
           ></EntreeBuilder>
-          <OrderAddonSelector v-if="active === 'addon'"></OrderAddonSelector>
+          <OrderAddon
+            v-if="active === 'addon'"
+            @update="setActive"
+          ></OrderAddon>
         </transition>
       </div>
     </section>
@@ -18,10 +21,10 @@
 <script>
 import OrderTotals from "./components/OrderTotals";
 import EntreeBuilder from "./components/EntreeBuilder";
-import OrderAddonSelector from "./components/OrderAddonSelector";
+import OrderAddon from "./components/OrderAddon";
 export default {
   components: {
-    OrderAddonSelector,
+    OrderAddon,
     EntreeBuilder,
     OrderTotals
   },
@@ -40,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss">
-$body-size: 18px;
+$body-size: 24px;
 
 @import "~bulma/sass/utilities/_all";
 
@@ -100,6 +103,14 @@ $radio-active-background-color: $warning;
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+
+.fade-leave,.fade-leave-active {
+  position: absolute;
+}
+
+.order-questions {
+  font-size: 150%;
 }
 
 .slide-enter-active {
