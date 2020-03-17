@@ -22,7 +22,15 @@ const getters = {
 const mutations = {
   [ADD_ITEM](state, item) {
     const orderTypeArray = ["entree", "drink", "dessert"];
-    state.items.push(item);
+    let cartIndex;
+    if (item.type !== "entree") {
+      cartIndex = state.items.findIndex(cartItem => item.type === cartItem.type && cartItem.name === item.name);
+    }
+    if (cartIndex > 0) {
+      state.items[cartIndex].qty += item.qty;
+    } else {
+      state.items.push(item);
+    }
     state.items.sort((a, b) =>
       orderTypeArray.findIndex(type => type === a.type) >
       orderTypeArray.findIndex(type => type === b.type)
