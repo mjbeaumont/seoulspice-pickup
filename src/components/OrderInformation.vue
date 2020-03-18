@@ -88,6 +88,7 @@
 <script>
 import { createHelpers } from "vuex-map-fields";
 import locations from "../config/locations";
+import LogRocket from "logrocket";
 
 const { mapFields } = createHelpers({
   getterType: "getOrderField",
@@ -130,6 +131,11 @@ export default {
     pay() {
       this.$validator.validateAll().then(result => {
         if (result) {
+          if (process.env.NODE_ENV === "production") {
+            LogRocket.identify(this.email, {
+              name: this.name
+            });
+          }
           this.$emit("update", "payment");
         }
       });

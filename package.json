@@ -11,6 +11,7 @@
     "axios": "^0.19.2",
     "buefy": "^0.8.13",
     "core-js": "^3.6.4",
+    "logrocket": "^1.0.6",
     "vee-validate": "2.1.5",
     "vue": "^2.6.11",
     "vue-currency-filter": "^4.0.3",
