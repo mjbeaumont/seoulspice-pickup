@@ -10,6 +10,6 @@
     "require": {
         "phpmailer/phpmailer": "^6.1",
         "square/connect": "^3.20200226",
-        "monolog/monolog": "^2.0"
+        "monolog/monolog": "^1.0"
     }
 }
