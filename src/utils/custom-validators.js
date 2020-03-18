@@ -25,7 +25,6 @@ export const tomorrow = {
 
 export const hours = {
   getMessage(field, args) {
-    console.log(field, args);
     return (
       "Orders can be placed between " +
       formatTime(args[0]) +
@@ -43,8 +42,6 @@ export const hours = {
     const submittedTime =
       value.getHours().toString() +
       formatMinutes(value.getMinutes()).toString();
-
-    console.log(minTime, maxTime, submittedTime);
 
     return submittedTime >= minTime && submittedTime <= maxTime;
   }
