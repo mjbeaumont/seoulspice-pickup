@@ -184,9 +184,7 @@ $radio-active-background-color: $warning;
   max-height: 0;
 }
 
-@media screen and (max-width: 767px) {
-  .section {
-    padding: 3rem 0.2rem;
-  }
+.section {
+  padding: 3rem 0.2rem;
 }
 </style>

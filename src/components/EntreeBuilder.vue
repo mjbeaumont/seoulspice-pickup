@@ -3,7 +3,7 @@
     <section class="section">
       <div class="container">
         <transition class="fade">
-          <div v-if="!entree.base">
+          <div v-if="!entree.base" class="has-text-centered-mobile">
             <h3>Choose your base</h3>
             <div class="buttons">
               <b-button
@@ -122,5 +122,12 @@ export default {
 .box {
   width: 25%;
   margin-top: 1em;
+}
+
+@media screen and (max-width: 786px) {
+  .buttons .button {
+    margin-left: auto;
+    margin-right: auto!important;
+  }
 }
 </style>
