@@ -67,6 +67,7 @@ export default {
         this.active = section;
       }
       this.edit = false;
+      window.scrollTo(0, 0);
     },
     setEdit(section) {
       this.setActive(section);
@@ -181,5 +182,11 @@ $radio-active-background-color: $warning;
 .slide-leave-to {
   overflow: hidden;
   max-height: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .section {
+    padding: 3rem 0.2rem;
+  }
 }
 </style>

@@ -136,7 +136,7 @@ export default {
               that.$emit("update", "summary");
             } else {
               that.submitDisabled = false;
-              that.paymentErrors.push({message: response.data.message});
+              that.paymentErrors.push({ message: response.data.message });
             }
           }
         }
@@ -224,5 +224,11 @@ export default {
 .button-credit-card:hover {
   background: linear-gradient(180deg, #a791ff -57.14%, #856aef 125%);
   color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+  #form-container {
+    width: 95%;
+  }
 }
 </style>
