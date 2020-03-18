@@ -109,7 +109,7 @@ export default {
     }
   },
   created() {
-    /*const now = new Date();
+    const now = new Date();
     let startTime = new Date(now.getTime() + 15 * 60000);
     const minutes = startTime.getMinutes();
     const hours = startTime.getHours();
@@ -120,7 +120,7 @@ export default {
     startTime.setMinutes(m);
     startTime.setHours(h);
 
-    this.time = startTime;*/
+    this.time = startTime;
   },
   data() {
     return {
