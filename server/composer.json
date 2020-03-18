@@ -1,0 +1,15 @@
+{
+    "name": "mjbeaumont/seoulspice-pickup",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Matthew Beaumont",
+            "email": "matt@beaumontwebdev.com"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.1",
+        "square/connect": "^3.20200226",
+        "monolog/monolog": "^2.0"
+    }
+}
