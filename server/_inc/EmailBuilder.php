@@ -57,7 +57,7 @@ class emailBuilder {
 		$order_lines = [];
 
 		foreach ($items as $item) {
-			$item_line = $item->qty . ' X ' . $item->name . ' [' . $item->price . ']';
+			$item_line = $item->qty . ' X ' . $item->name . ' [' . $item->price * $item->qty . ']';
 			if ( $item->type === 'entree' ) {
 				$item_line .= "<ul>\r\n";
 				foreach ($item->options as $option) {
