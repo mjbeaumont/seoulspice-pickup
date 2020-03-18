@@ -98,7 +98,7 @@ export default {
     ...mapFields(["name", "email", "location", "time", "curbside"]),
     minTime() {
       let minTime = new Date();
-      minTime.setHours(10, 0, 0);
+      minTime.setHours(11, 0, 0);
       return minTime;
     },
     maxTime() {
