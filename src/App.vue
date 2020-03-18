@@ -25,6 +25,10 @@
             v-if="active === 'payment'"
             @update="setActive"
           ></OrderPayment>
+          <OrderSummary
+            v-if="active === 'summary'"
+            @update="setActive"
+          ></OrderSummary>
         </transition>
       </div>
     </section>
@@ -38,6 +42,7 @@ import OrderAddon from "./components/OrderAddon";
 import OrderConfirmation from "./components/OrderConfirmation";
 import OrderInformation from "./components/OrderInformation";
 import OrderPayment from "./components/OrderPayment";
+import OrderSummary from "./components/OrderSummary";
 export default {
   components: {
     OrderAddon,
@@ -45,7 +50,8 @@ export default {
     OrderTotals,
     OrderConfirmation,
     OrderInformation,
-    OrderPayment
+    OrderPayment,
+    OrderSummary
   },
   data() {
     return {
