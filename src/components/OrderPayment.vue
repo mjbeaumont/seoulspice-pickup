@@ -1,7 +1,11 @@
 <template>
   <section class="section">
     <div class="container">
-      <b-message type="is-danger" title="Payment Error" v-if="paymentErrors.length">
+      <b-message
+        type="is-danger"
+        title="Payment Error"
+        v-if="paymentErrors.length"
+      >
         <p>Please correct the following errors:</p>
         <div class="content">
           <ul>
@@ -43,7 +47,7 @@ const { mapFields } = createHelpers({
 export default {
   computed: {
     ...mapGetters(["total", "itemSubtotal", "tax", "items"]),
-    ...mapFields(["name", "location", "time"])
+    ...mapFields(["name", "location", "time", "email", "curbside"])
   },
   data() {
     return {
@@ -117,8 +121,12 @@ export default {
             items: that.items,
             order: {
               name: that.name,
+              email: that.email,
               location: that.location,
-              time: that.time
+              time: that.time.toLocaleTimeString("en-US", {
+                timeStyle: "short"
+              }),
+              curbside: that.curbside
             }
           });
           loadingComponent.close();

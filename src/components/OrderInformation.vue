@@ -17,6 +17,19 @@
             ></b-input>
           </b-field>
           <b-field
+            label="Email"
+            :type="{ 'is-danger': errors.has('email') }"
+            :message="errors.first('email')"
+          >
+            <b-input
+              v-model="email"
+              name="email"
+              type="email"
+              icon="envelope"
+              v-validate="'required|email'"
+            ></b-input>
+          </b-field>
+          <b-field
             label="Pickup Location"
             :type="{ 'is-danger': errors.has('location') }"
             :message="errors.first('location')"
@@ -55,6 +68,11 @@
               :use-html5-validation="false"
             ></b-timepicker>
           </b-field>
+          <b-field>
+            <b-checkbox type="is-warning" v-model="curbside"
+            >I would like to pick up my order at the curb</b-checkbox
+            >
+          </b-field>
           <div class="has-text-centered buttons">
             <a class="button is-success" @click.prevent="pay"
               ><span>Finish and Pay</span
@@ -77,9 +95,11 @@ const { mapFields } = createHelpers({
 });
 export default {
   computed: {
-    ...mapFields(["name", "location", "time"]),
+    ...mapFields(["name", "email", "location", "time", "curbside"]),
     minTime() {
-      return new Date();
+      let minTime = new Date();
+      minTime.setHours(10, 0, 0);
+      return minTime;
     },
     maxTime() {
       let maxTime = new Date();
@@ -88,7 +108,7 @@ export default {
     }
   },
   created() {
-    const now = new Date();
+    /*const now = new Date();
     let startTime = new Date(now.getTime() + 15 * 60000);
     const minutes = startTime.getMinutes();
     const hours = startTime.getHours();
@@ -99,7 +119,7 @@ export default {
     startTime.setMinutes(m);
     startTime.setHours(h);
 
-    this.time = startTime;
+    this.time = startTime;*/
   },
   data() {
     return {

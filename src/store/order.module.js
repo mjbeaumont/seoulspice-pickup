@@ -7,8 +7,10 @@ const { getOrderField, updateOrderField } = createHelpers({
 
 const state = {
   name: null,
+  email: null,
   location: null,
-  time: null
+  time: null,
+  curbside: false
 };
 
 const getters = {

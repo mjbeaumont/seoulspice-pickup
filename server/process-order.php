@@ -1,9 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
 require_once("vendor/autoload.php");
 
 $env = 'dev';
@@ -17,6 +13,6 @@ $data = json_decode( $formData, false);
 
 include('./_inc/_logger.php');
 include('./_inc/_process-payment.php');
-
+include('./_inc/_send-email.php');
 
 
