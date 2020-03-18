@@ -136,11 +136,7 @@ export default {
               that.$emit("update", "summary");
             } else {
               that.submitDisabled = false;
-              that.$buefy.toast.open({
-                message: response.data.message,
-                type: "is-danger",
-                duration: 5000
-              });
+              that.paymentErrors.push({message: response.data.message});
             }
           }
         }
