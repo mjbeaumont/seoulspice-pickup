@@ -109,10 +109,10 @@ export default {
           let response = await orderService.post("/process-order.php", {
             nonce: nonce,
             totals: {
-              subtotal: that.itemSubtotal,
-              tax: that.tax,
+              subtotal: that.itemSubtotal.toFixed(2),
+              tax: that.tax.toFixed(2),
               taxRate: that.taxRate,
-              total: that.total
+              total: that.total.toFixed(2)
             },
             items: that.items,
             order: {
