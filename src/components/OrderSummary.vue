@@ -25,7 +25,7 @@
           </p>
           <h3>Items Ordered</h3>
           <div v-for="(item, index) in items" :key="index">
-            <p>{{ item.qty }} X {{ item.name }} [{{ item.price }}]</p>
+            <p>{{ item.qty }} X {{ item.name }} [{{ item.price | currency }}]</p>
             <ul v-if="item.type === 'entree'">
               <li
                 v-for="(option, index) in item.options"
