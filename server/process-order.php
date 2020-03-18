@@ -15,4 +15,6 @@ include('./_inc/_logger.php');
 include('./_inc/_process-payment.php');
 include('./_inc/_send-email.php');
 
+echo json_encode( $response );
+
 
