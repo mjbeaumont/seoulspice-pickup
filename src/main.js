@@ -6,11 +6,11 @@ import VueCurrencyFilter from "vue-currency-filter";
 import VeeValidate from "vee-validate";
 import { hours } from "./utils/custom-validators";
 import LogRocket from "logrocket";
-import VueAnalytics from "vue-analytics";
+import VueGtag from "vue-gtag";
 
 // Configuration VueAnalytics
-Vue.use(VueAnalytics, {
-  id: "UA-161150004-1"
+Vue.use(VueGtag, {
+  config: { id: "UA-161150004-1" }
 });
 
 if (process.env.NODE_ENV === "production") {

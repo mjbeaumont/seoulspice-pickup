@@ -67,7 +67,8 @@ export default {
         this.active = section;
       }
       this.edit = false;
-      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.scrollTop = 0;
     },
     setEdit(section) {
       this.setActive(section);
@@ -128,6 +129,7 @@ $colors: (
 $steps-active-color: $warning;
 $steps-previous-color: $warning;
 $radio-active-background-color: $warning;
+$navbar-breakpoint: 767px;
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
