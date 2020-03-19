@@ -70,7 +70,7 @@
           </b-field>
           <b-field>
             <b-checkbox type="is-warning" v-model="curbside"
-            >I would like to pick up my order at the curb</b-checkbox
+              >I would like to pick up my order at the curb</b-checkbox
             >
           </b-field>
           <div class="has-text-centered buttons">
@@ -110,17 +110,24 @@ export default {
   },
   created() {
     const now = new Date();
-    let startTime = new Date(now.getTime() + 15 * 60000);
-    const minutes = startTime.getMinutes();
-    const hours = startTime.getHours();
 
-    let m = ((((minutes + 7.5) / 15) | 0) * 15) % 60;
-    let h = (((minutes / 105 + 0.5) | 0) + hours) % 24;
+    if (now.getHours() >= 20 || now.getHours() < 11) {
+      now.setHours(11);
+      now.setMinutes(0);
+      this.time = now;
+    } else {
+      let startTime = new Date(now.getTime() + 15 * 60000);
+      const minutes = startTime.getMinutes();
+      const hours = startTime.getHours();
 
-    startTime.setMinutes(m);
-    startTime.setHours(h);
+      let m = ((((minutes + 7.5) / 15) | 0) * 15) % 60;
+      let h = (((minutes / 105 + 0.5) | 0) + hours) % 24;
 
-    this.time = startTime;
+      startTime.setMinutes(m);
+      startTime.setHours(h);
+
+      this.time = startTime;
+    }
   },
   data() {
     return {
