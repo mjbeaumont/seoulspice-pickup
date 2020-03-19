@@ -140,6 +140,12 @@ export default {
 
           if (response.status === 200) {
             if (response.data.success) {
+              that.$gtag.event("transaction", {
+                transaction_id:
+                  new Date().getTime() + Math.ceil(Math.random() * 1000),
+                value: that.total.toFixed(2),
+                tax: that.tax.toFixed(2)
+              });
               that.$emit("update", "summary");
             } else {
               that.submitDisabled = false;
