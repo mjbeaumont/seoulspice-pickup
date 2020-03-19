@@ -25,8 +25,9 @@
           class="button-credit-card"
           @click.prevent="processPayment"
         >
-          Pay {{ total | currency }}
+          Pay with card {{ total | currency }}
         </button>
+        <button id="sq-apple-pay"></button>
       </div>
     </div>
   </section>
@@ -61,9 +62,12 @@ export default {
     // eslint-disable-next-line no-undef
     that.paymentForm = new SqPaymentForm({
       // Initialize the payment form elements
-      //TODO: Replace with your sandbox application ID
       applicationId: process.env.VUE_APP_SQUAREUP_APPLICATION_ID,
       inputClass: "sq-input",
+      locationId:
+        process.env.NODE_ENV === "development"
+          ? "WC2W1FZKRQMPV"
+          : that.location.id,
       autoBuild: false,
       // Customize the CSS for SqPaymentForm iframe elements
       inputStyles: [
@@ -91,6 +95,9 @@ export default {
       postalCode: {
         elementId: "sq-postal-code",
         placeholder: "Postal"
+      },
+      applePay: {
+        elementId: "sq-apple-pay"
       },
       // SqPaymentForm callback functions
       callbacks: {
@@ -139,6 +146,36 @@ export default {
               that.paymentErrors.push({ message: response.data.message });
             }
           }
+        },
+        methodsSupported: function(methods, unsupportedReason) {
+          // eslint-disable-next-line
+          console.log(methods);
+
+          var applePayBtn = document.getElementById("sq-apple-pay");
+
+          // Only show the button if Apple Pay on the Web is enabled
+          // Otherwise, display the wallet not enabled message.
+          if (methods.applePay === true) {
+            applePayBtn.style.display = "inline-block";
+          } else {
+            // eslint-disable-next-line
+            console.log(unsupportedReason);
+          }
+        },
+        createPaymentRequest: function() {
+          const paymentRequestJson = {
+            requestShippingAddress: false,
+            requestBillingInfo: false,
+            currencyCode: "USD",
+            countryCode: "US",
+            total: {
+              label: "Seoulspice",
+              amount: that.total.toFixed(2),
+              pending: false
+            }
+          };
+
+          return paymentRequestJson;
         }
       }
     });
@@ -230,5 +267,21 @@ export default {
   #form-container {
     width: 95%;
   }
+}
+
+/* Customize the Apple Pay on the Web button */
+#sq-apple-pay {
+  width: 100%;
+  height: 48px;
+  padding: 0;
+  margin: 24px 0 16px 0;
+  background-image: -webkit-named-image(apple-pay-logo-white);
+  background-color: black;
+  background-size: 100% 60%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  border-radius: 4px;
+  cursor: pointer;
+  display: none;
 }
 </style>
