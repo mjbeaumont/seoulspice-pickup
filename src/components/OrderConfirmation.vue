@@ -37,6 +37,7 @@ export default {
       this.$emit("edit", type);
     },
     confirmItems() {
+      this.$gtag.event("begin-checkout");
       this.$emit("update", "order-info");
     }
   }
