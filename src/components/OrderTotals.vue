@@ -68,12 +68,16 @@ export default {
 <style lang="scss" scoped>
 .navbar-start {
   margin: 0 auto;
-  padding-right: 180px;
+  padding-right: 280px;
+}
+
+.navbar-item img {
+  max-height: 2.75em;
 }
 
 .starting-logo {
   padding-left: 20px;
-  max-width: 150px;
+  max-width: 250px;
 }
 
 @media screen and (min-width: 768px) {
