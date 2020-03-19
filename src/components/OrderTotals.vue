@@ -80,12 +80,26 @@ export default {
   max-width: 250px;
 }
 
+/* mobile and tablet */
+@media screen and (max-width: 768px) {
+  .navbar-start {
+    .navbar-item {
+      padding-right: 0;
+    }
+  }
+}
+
+/* tablet and bigger */
 @media screen and (min-width: 768px) {
   .button.is-medium {
     display: none;
   }
-}
 
+  .starting-logo {
+    max-width: 150px;
+  }
+}
+/* mobile */
 @media screen and (max-width: 767px) {
   .starting-logo {
     display: none;
