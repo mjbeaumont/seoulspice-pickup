@@ -2,7 +2,7 @@ const entreeOptions = {
   bases: [
     { name: "White Rice Bowl", price: 9.99 },
     { name: "Purple Rice Bowl", price: 9.99 },
-    { name: "Noodles", price: 9.79 },
+    //{ name: "Noodles", price: 9.79 },
     { name: "Korrito", price: 9.49 },
     { name: "Salad", price: 9.89 }
   ],
