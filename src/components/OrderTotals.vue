@@ -3,7 +3,7 @@
     <div class="navbar-brand">
       <a
         role="button"
-        class="button is-medium is-outlined is-warning is-hidden-desktop"
+        class="button is-medium is-outlined is-warning"
         :class="mobileMenuOpen ? 'is-active' : ''"
         aria-label="menu"
         aria-expanded="false"
@@ -59,5 +59,11 @@ export default {
 <style lang="scss" scoped>
 .navbar-start {
   margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .button.is-medium {
+    display: none;
+  }
 }
 </style>
