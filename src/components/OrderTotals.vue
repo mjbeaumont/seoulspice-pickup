@@ -1,6 +1,16 @@
 <template>
   <div class="navbar is-fixed-top is-dark is-transparent">
     <div class="navbar-brand">
+      <a class="navbar-item"
+        ><img
+          class="starting-logo"
+          alt="SEOULSPICE"
+          src="https://www.seoulspice.com/wp-content/uploads/2017/05/logo1-1.png"
+          srcset="
+            https://www.seoulspice.com/wp-content/uploads/2017/05/logo1-1.png  1x,
+            https://www.seoulspice.com/wp-content/uploads/2017/05/logo1r-1.png 2x
+          "
+      /></a>
       <a
         role="button"
         class="button is-medium is-outlined is-warning"
@@ -8,7 +18,6 @@
         aria-label="menu"
         aria-expanded="false"
         @click.prevent="toggleMobileMenu"
-        ><span class="icon"> <i class="fas fa-cash-register"></i> </span
         ><span>{{ mobileButtonText }}</span></a
       >
     </div>
@@ -59,11 +68,33 @@ export default {
 <style lang="scss" scoped>
 .navbar-start {
   margin: 0 auto;
+  padding-right: 180px;
+}
+
+.starting-logo {
+  padding-left: 20px;
+  max-width: 150px;
 }
 
 @media screen and (min-width: 768px) {
   .button.is-medium {
     display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .starting-logo {
+    display: none;
+  }
+
+  .navbar-brand {
+    .button {
+      margin: 0 auto;
+    }
+
+    .navbar-item {
+      padding: 0;
+    }
   }
 }
 </style>
