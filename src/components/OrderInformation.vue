@@ -68,6 +68,24 @@
               :use-html5-validation="false"
             ></b-timepicker>
           </b-field>
+          <b-field label="Would you like to add a tip?">
+            <div class="block">
+              <b-radio name="name" native-value=".1" @input="updateTip">
+                10%
+              </b-radio>
+              <b-radio name="name" native-value=".15" @input="updateTip">
+                15%
+              </b-radio>
+              <b-radio name="name" native-value=".2" @input="updateTip">
+                20%
+              </b-radio>
+            </div>
+          </b-field>
+          <b-field
+            message="Choose a percentage or enter a custom amount in the provided box."
+          >
+            <b-input v-cleave="masks.numeral" v-model="tip"></b-input>
+          </b-field>
           <b-field>
             <b-checkbox type="is-warning" v-model="curbside"
               >I would like to pick up my order at the curb</b-checkbox
@@ -87,8 +105,10 @@
 
 <script>
 import { createHelpers } from "vuex-map-fields";
+import { mapGetters } from "vuex";
 import locations from "../config/locations";
 import LogRocket from "logrocket";
+import cleave from "../utils/cleave-directive";
 
 const { mapFields } = createHelpers({
   getterType: "getOrderField",
@@ -96,7 +116,8 @@ const { mapFields } = createHelpers({
 });
 export default {
   computed: {
-    ...mapFields(["name", "email", "location", "time", "curbside"]),
+    ...mapFields(["name", "email", "location", "time", "curbside", "tip"]),
+    ...mapGetters(["subtotal"]),
     minTime() {
       let minTime = new Date();
       minTime.setHours(11, 0, 0);
@@ -131,9 +152,18 @@ export default {
   },
   data() {
     return {
-      locations: locations
+      locations: locations,
+      masks: {
+        numeral: {
+          numeral: true,
+          numeralDecimalScale: 2,
+          numeralThousandsGroupStyle: "thousand",
+          prefix: "$ "
+        }
+      }
     };
   },
+  directives: { cleave },
   methods: {
     pay() {
       this.$validator.validateAll().then(result => {
@@ -146,10 +176,17 @@ export default {
           this.$emit("update", "payment");
         }
       });
+    },
+    updateTip(val) {
+      this.tip = "$" + (this.subtotal * val).toFixed(2);
     }
   },
   name: "OrderInformation"
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.b-checkbox {
+  margin-top: 1em;
+}
+</style>

@@ -82,6 +82,7 @@ class emailBuilder {
 		$totals = $this->_data->totals;
 		$subtotal = ($totals->subtotal) ? "$" . number_format($totals->subtotal, 2) : null;
 		$tax = ($totals->tax) ? "$" . number_format($totals->tax, 2) : null;
+		$tip = ($totals->tip > 0) ? "$" . number_format($totals->tip, 2) : null;
 		$total = ($totals->total) ? "$" . number_format($totals->total, 2) : null;
 
 		$this->_sections[] = [
@@ -89,6 +90,7 @@ class emailBuilder {
 			"lines" => [
 				$this->_getLine("Subtotal", $subtotal),
 				$this->_getLine("Tax", $tax),
+				$this->_getLine("Tip", $tip),
 				$this->_getLine("Total", $total),
 			]
 		];

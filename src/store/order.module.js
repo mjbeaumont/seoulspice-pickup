@@ -10,7 +10,8 @@ const state = {
   email: null,
   location: null,
   time: null,
-  curbside: false
+  curbside: false,
+  tip: null
 };
 
 const getters = {

@@ -42,6 +42,9 @@
           <p>
             <strong>Subtotal: </strong> {{ itemSubtotal | currency }}<br />
             <strong>Tax: </strong> {{ tax | currency }}<br />
+            <span v-if="tip > 0"
+              ><strong>Tip: </strong> {{ tip | currency }}<br
+            /></span>
             <strong>Totals: </strong> {{ total | currency }}
           </p>
         </div>
@@ -60,7 +63,7 @@ const { mapFields } = createHelpers({
 });
 export default {
   computed: {
-    ...mapGetters(["total", "itemSubtotal", "tax", "items"]),
+    ...mapGetters(["total", "itemSubtotal", "tax", "items", "tip"]),
     ...mapFields(["name", "location", "time", "email", "curbside"]),
     shortTime() {
       return this.time.toLocaleTimeString("en-US", {
