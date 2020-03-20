@@ -47,7 +47,7 @@ const { mapFields } = createHelpers({
 });
 export default {
   computed: {
-    ...mapGetters(["total", "itemSubtotal", "tax", "items"]),
+    ...mapGetters(["total", "itemSubtotal", "tax", "items", "tip"]),
     ...mapFields(["name", "location", "time", "email", "curbside"])
   },
   data() {
@@ -122,6 +122,7 @@ export default {
             totals: {
               subtotal: that.itemSubtotal.toFixed(2),
               tax: that.tax.toFixed(2),
+              tip: that.tip.toFixed(2),
               taxRate: that.taxRate,
               total: that.total.toFixed(2)
             },

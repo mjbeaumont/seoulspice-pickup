@@ -1,11 +1,15 @@
 import { SET_TAX_EXEMPT } from "./mutations.type";
 
-const state = {
-  taxExempt: false
-};
+const state = {};
+
 const getters = {
   subtotal(state, getters, rootState, rootGetters) {
     return rootGetters.itemSubtotal;
+  },
+  tip(state, getters, rootState) {
+    return rootState.order.tip
+      ? Number(rootState.order.tip.replace(/[^0-9.-]+/g, ""))
+      : 0;
   },
   tax(state, getters) {
     return getters.subtotal * getters.taxRate;
@@ -17,7 +21,7 @@ const getters = {
     return getters.taxRate * 100;
   },
   total(state, getters) {
-    return getters.subtotal + getters.tax;
+    return getters.subtotal + getters.tip + getters.tax;
   }
 };
 const actions = {};

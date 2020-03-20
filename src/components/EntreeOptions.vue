@@ -62,7 +62,7 @@ export default {
     setActiveOrderStep() {
       const option = this.options.getOption(this.active);
 
-      if (this.checkMinSelected(option)) {
+      if (option.type === "extraProteins" || this.checkMinSelected(option)) {
         this.advanceStep();
       } else {
         this.$buefy.dialog.confirm({

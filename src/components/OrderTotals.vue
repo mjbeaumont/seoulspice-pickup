@@ -27,6 +27,10 @@
           <span class="has-text-warning has-text-weight-bold">Subtotal: </span>
           {{ subtotal | currency }}
         </p>
+        <p class="navbar-item" v-if="tip > 0">
+          <span class="has-text-warning has-text-weight-bold">Tip: </span>
+          {{ tip | currency }}
+        </p>
         <p class="navbar-item" v-if="taxRate > 0">
           <span class="has-text-warning has-text-weight-bold"
             >Tax ({{ taxRateHuman }}%):
@@ -50,7 +54,7 @@ export default {
     mobileButtonText() {
       return this.mobileMenuOpen ? "Hide Totals" : "View Totals";
     },
-    ...mapGetters(["subtotal", "tax", "taxRate", "taxRateHuman", "total"])
+    ...mapGetters(["subtotal", "tip", "tax", "taxRate", "taxRateHuman", "total"])
   },
   data() {
     return {
@@ -83,9 +87,14 @@ export default {
 /* mobile and tablet */
 @media screen and (max-width: 768px) {
   .navbar-start {
+    padding-right: 0;
     .navbar-item {
       padding-right: 0;
     }
+  }
+
+  .navbar {
+    font-size: 80%;
   }
 }
 
