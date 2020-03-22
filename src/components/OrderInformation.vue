@@ -109,6 +109,7 @@ import { mapGetters } from "vuex";
 import locations from "../config/locations";
 import LogRocket from "logrocket";
 import cleave from "../utils/cleave-directive";
+import { orderStartTime, orderEndTime } from "../config/config";
 
 const { mapFields } = createHelpers({
   getterType: "getOrderField",
@@ -120,20 +121,20 @@ export default {
     ...mapGetters(["subtotal"]),
     minTime() {
       let minTime = new Date();
-      minTime.setHours(11, 0, 0);
+      minTime.setHours(orderStartTime, 0, 0);
       return minTime;
     },
     maxTime() {
       let maxTime = new Date();
-      maxTime.setHours(20, 0, 0);
+      maxTime.setHours(orderEndTime, 0, 0);
       return maxTime;
     }
   },
   created() {
     const now = new Date();
 
-    if (now.getHours() >= 20 || now.getHours() < 11) {
-      now.setHours(11);
+    if (now.getHours() >= orderEndTime || now.getHours() < orderStartTime) {
+      now.setHours(orderStartTime);
       now.setMinutes(0);
       this.time = now;
     } else {
