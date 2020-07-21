@@ -3,9 +3,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-include('./_inc/EmailBuilder.php');
-
-$emailBuilder = new emailBuilder($data);
+$emailBuilder = new \SSPickup\models\EmailBuilder($data);
 $mail = new PHPMailer(true);
 
 try {

@@ -21,3 +21,5 @@ yarn-error.log*
 *.sw?
 server/vendor
 server/log
+server/_inc/config.php
+public/.htaccess
