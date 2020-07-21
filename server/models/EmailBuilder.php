@@ -1,6 +1,8 @@
 <?php
 
-class emailBuilder {
+namespace SSPickup\models;
+
+class EmailBuilder {
 
 	protected $_data;
 

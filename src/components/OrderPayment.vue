@@ -33,7 +33,6 @@
   </section>
 
   <!-- end #form-container -->
-  <!-- TODO: Add script from step 1.1.3 -->
 </template>
 
 <script>
